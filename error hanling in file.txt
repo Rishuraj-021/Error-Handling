@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::ifstream inputFile("data.txt");
+
+    if (!inputFile.is_open()) {
+        std::cerr << "Error: Could not open file 'data.txt'" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    while (std::getline(inputFile, line)) {
+        std::cout << line << std::endl;
+    }
+
+    if (inputFile.bad()) {
+        std::cerr << "Error: I/O error while reading file." << std::endl;
+    } else if (!inputFile.eof()) {
+        std::cerr << "Error: Unknown error occurred while reading file." << std::endl;
+    }
+
+    inputFile.close();
+    return 0;
+}
